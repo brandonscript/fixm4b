@@ -13,9 +13,9 @@ from fixm4b.config import Fixm4bConfig, default_config_path, write_default_confi
 from fixm4b.errors import ConfigurationError, Fixm4bError
 from fixm4b.settings import set_settings
 
-COLORS_FILE = Path(__file__).with_name("colors.ini")
-if COLORS_FILE.exists():
-    Tinta.load_colors(str(COLORS_FILE))
+from fixm4b.helpers.term import ensure_colors_loaded
+
+ensure_colors_loaded()
 
 
 def _config_parser() -> argparse.ArgumentParser:

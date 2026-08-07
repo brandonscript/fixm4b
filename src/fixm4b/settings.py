@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from collections.abc import Callable
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
@@ -28,9 +29,19 @@ class Fixm4bSettings:
 
 
 _settings: Fixm4bSettings | None = None
+# Host apps (auto-m4b) can register a live provider so cfg monkeypatches apply.
+_settings_provider: Callable[[], Fixm4bSettings] | None = None
+
+
+def set_settings_provider(provider: Callable[[], Fixm4bSettings] | None) -> None:
+    """Register a callback that supplies settings (e.g. adapt auto-m4b ``cfg``)."""
+    global _settings_provider
+    _settings_provider = provider
 
 
 def get_settings() -> Fixm4bSettings:
+    if _settings_provider is not None:
+        return _settings_provider()
     if _settings is not None:
         return _settings
     # Prefer XDG config when present; else env / defaults.

@@ -162,6 +162,11 @@ def _get_open_library_user_agent() -> str | None:
     return f"{app_name}/{version} ({email})"
 
 
+def get_open_library_user_agent() -> str | None:
+    """Public entrypoint; delegates so monkeypatches of either name apply."""
+    return _get_open_library_user_agent()
+
+
 def _in_alternate_names(name: str, doc: dict[str, Any]) -> bool:
     """Check if name is in the alternate_names list of the doc"""
     if not (alternate_names := doc.get("alternate_names", None)):
@@ -901,7 +906,7 @@ def open_library_lookup_author(
     """
     _ensure_ol_cache()
 
-    agent_string = _get_open_library_user_agent()
+    agent_string = get_open_library_user_agent()
     if not agent_string:
         return None
 
@@ -1137,7 +1142,7 @@ def open_library_lookup_title(
 
     from fixm4b.helpers.patterns import junk_chars_title_pattern, title_chunk_pattern
 
-    agent_string = _get_open_library_user_agent()
+    agent_string = get_open_library_user_agent()
     if not agent_string:
         return None
 
@@ -1337,7 +1342,7 @@ def open_library_fetch_by_ref(
         )
     kind, olid = parsed
 
-    agent_string = _get_open_library_user_agent()
+    agent_string = get_open_library_user_agent()
     if not agent_string:
         return None
 
@@ -1420,4 +1425,3 @@ subtitle_sep_normalized = _subtitle_sep_normalized
 desired_matches_edition_title = _desired_matches_edition_title
 best_matching_edition_base_title = _best_matching_edition_base_title
 best_matching_edition_subtitle = _best_matching_edition_subtitle
-get_open_library_user_agent = _get_open_library_user_agent

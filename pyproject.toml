@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fixm4b"
-version = "0.1.1"
+version = "0.1.2"
 description = "Retag converted audiobooks (ID3 / filenames) without re-encoding."
 authors = ["Brandon Shelley <brandon@pacificaviator.co>"]
 license = "MIT"

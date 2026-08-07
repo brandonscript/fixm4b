@@ -8,10 +8,18 @@ from tinta import Tinta
 from fixm4b.helpers.misc import re_group
 
 _COLORS = Path(__file__).resolve().parents[1] / "colors.ini"
-if _COLORS.exists():
-    Tinta.load_colors(str(_COLORS))
-elif (Path(__file__).resolve().parents[2] / "colors.ini").exists():
-    Tinta.load_colors(str(Path(__file__).resolve().parents[2] / "colors.ini"))
+_colors_loaded = False
+
+
+def ensure_colors_loaded() -> None:
+    """Load package colors.ini once — call from CLI entrypoints, not on import."""
+    global _colors_loaded
+    if _colors_loaded:
+        return
+    path = _COLORS if _COLORS.exists() else Path(__file__).resolve().parents[2] / "colors.ini"
+    if path.exists():
+        Tinta.load_colors(str(path))
+    _colors_loaded = True
 
 
 THIS_LINE_IS_EMPTY = False
