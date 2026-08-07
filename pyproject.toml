@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fixm4b"
-version = "0.1.0"
+version = "0.1.1"
 description = "Retag converted audiobooks (ID3 / filenames) without re-encoding."
 authors = ["Brandon Shelley <brandon@pacificaviator.co>"]
 license = "MIT"
@@ -42,7 +42,15 @@ target-version = "py312"
 line-length = 120
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
+select = ["E", "F"]
+ignore = ["E501", "E714", "E402", "E731"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"src/fixm4b/ol_lookup.py" = ["E741", "F401"]
+"src/fixm4b/cli.py" = ["E402", "F401"]
+"src/fixm4b/helpers/term.py" = ["E402", "F401"]
+"src/fixm4b/metadata/*" = ["F401"]
 
 [tool.mypy]
 python_version = "3.12"

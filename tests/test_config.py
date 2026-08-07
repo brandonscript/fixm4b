@@ -31,10 +31,10 @@ def test_write_default_config_refuses_overwrite(tmp_path: Path):
     write_default_config(path)
     try:
         write_default_config(path)
-        assert False, "expected ConfigurationError"
     except ConfigurationError:
-        pass
-    write_default_config(path, force=True)
+        write_default_config(path, force=True)
+        return
+    raise AssertionError("expected ConfigurationError")
 
 
 def test_set_settings_injection():

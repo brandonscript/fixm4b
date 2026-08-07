@@ -5,7 +5,7 @@ from fixm4b.errors import ConfigurationError, Fixm4bError
 from fixm4b.metadata import FixPlan, apply_fix, plan_fix
 from fixm4b.settings import Fixm4bSettings, get_settings, set_settings, settings_from_cfg
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "ConfigurationError",

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
+from pathlib import Path
 import re
 from threading import RLock
 from dataclasses import dataclass, field
@@ -274,7 +275,7 @@ def lookup_metadata(
     lookup_open_library: bool = True,
     lookup_bookpeek: bool | None = None,
     goodreads_ref: str | None = None,
-    audio_path: "Path | None" = None,
+    audio_path: Path | None = None,
 ) -> MetadataComparison:
     """Query enabled providers and select Goodreads before Open Library.
 
