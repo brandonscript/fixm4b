@@ -4,8 +4,6 @@ import argparse
 import json
 import os
 import sys
-from pathlib import Path
-
 from tinta import Tinta  # type: ignore[import-untyped]
 
 from fixm4b import __version__
