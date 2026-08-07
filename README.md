@@ -39,3 +39,10 @@ poetry run fixm4b --help
 ## License
 
 MIT
+
+
+## PyPI releases
+
+GitHub Releases trigger `.github/workflows/publish.yml` (Trusted Publishing).
+Configure a PyPI trusted publisher for `brandonscript/fixm4b` (environment `pypi`)
+before the first wheel upload succeeds. Until then, install from GitHub or Homebrew.
